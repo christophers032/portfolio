@@ -306,6 +306,52 @@ function ServiceIcon({ name }) {
     </svg>
   );
 }
+function ImageLightbox({ work, onClose }) {
+  const closeRef = useRef(null);
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeRef.current?.focus();
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [onClose]);
+
+  if (!work || !work.image) return null;
+
+  return createPortal(
+    <div
+      className="modal-backdrop"
+      role="presentation"
+      onMouseDown={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+    >
+      <figure className="lightbox" role="dialog" aria-modal="true" aria-label={`${work.title} image`}>
+        <button ref={closeRef} className="modal-close" aria-label="Close image" onClick={onClose}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+            <path d="M6 6l12 12M18 6 6 18" />
+          </svg>
+        </button>
+        <div className="lightbox-img" style={{ background: work.imageBg || "#fff" }}>
+          <img src={work.image} alt={`${work.title} overview`} />
+        </div>
+        <figcaption>
+          <b>{work.title}</b>
+          <span>{work.kind}</span>
+        </figcaption>
+      </figure>
+    </div>,
+    document.body
+  );
+}
+
 function ProjectModal({ work, onClose }) {
   const closeRef = useRef(null);
 
@@ -659,6 +705,11 @@ export default function App() {
   const lastTrigger = useRef(null);
   const closeModal = useCallback(() => {
     setOpenWork(null);
+    lastTrigger.current?.focus();
+  }, []);
+  const [zoomWork, setZoomWork] = useState(null);
+  const closeZoom = useCallback(() => {
+    setZoomWork(null);
     lastTrigger.current?.focus();
   }, []);
   const [faq, setFaq] = useState(0);
@@ -1039,10 +1090,36 @@ export default function App() {
               <div className="rv port-cell" key={w.id} style={{ "--d": i % 3 }}>
                 <article className={`port-card ${w.accent}`} onPointerMove={spot}>
                   <div
-                    className={`port-thumb ${w.image ? "has-img" : ""}`}
+                    className={`port-thumb ${w.image ? "has-img zoomable" : ""}`}
                     style={w.imageBg ? { background: w.imageBg } : undefined}
+                    {...(w.image
+                      ? {
+                          role: "button",
+                          tabIndex: 0,
+                          "aria-label": `View larger image: ${w.title}`,
+                          onClick: (e) => {
+                            lastTrigger.current = e.currentTarget;
+                            setZoomWork(w.id);
+                          },
+                          onKeyDown: (e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                              e.preventDefault();
+                              lastTrigger.current = e.currentTarget;
+                              setZoomWork(w.id);
+                            }
+                          },
+                        }
+                      : {})}
                   >
                     {w.image && <img src={w.image} alt={`${w.title} overview`} loading="lazy" />}
+                    {w.image && (
+                      <span className="zoom-hint" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="11" cy="11" r="6.5" />
+                          <path d="m20 20-4.2-4.2M11 8.5v5M8.5 11h5" />
+                        </svg>
+                      </span>
+                    )}
                     <span className="kind">{w.kind}</span>
                     {!w.image && <span className="num">{w.code}</span>}
                   </div>
@@ -1109,6 +1186,7 @@ export default function App() {
             ))}
           </div>
           {openWork && <ProjectModal work={works.find((x) => x.id === openWork)} onClose={closeModal} />}
+          {zoomWork && <ImageLightbox work={works.find((x) => x.id === zoomWork)} onClose={closeZoom} />}
         </section>
         <section id="experience" className="reveal">
           <header className="jobs-head">
