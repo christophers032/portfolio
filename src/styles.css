@@ -8,8 +8,8 @@
   --sky: #6ec8ff;
   --violet: #c9a0ff;
   --serif: "Instrument Serif", Georgia, serif;
-  --sans: "Outfit", system-ui, sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, monospace;
+  --sans: system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "Cascadia Mono", "SF Mono", Consolas, Menlo, monospace;
 }
 
 * {
@@ -33,7 +33,6 @@ body,
 body {
   font-family: var(--sans);
   overflow-x: hidden;
-  cursor: none;
 }
 
 a {
@@ -44,7 +43,6 @@ a {
 button,
 input {
   font-family: inherit;
-  cursor: none;
 }
 
 ::selection {
@@ -69,20 +67,24 @@ input {
 
 .cursor {
   position: fixed;
+  left: 0;
+  top: 0;
   width: 12px;
   height: 12px;
+  margin: -6px 0 0 -6px;
   border-radius: 50%;
   background: var(--mint);
   pointer-events: none;
   z-index: 90;
-  mix-blend-mode: difference;
-  transform: translate(-50%, -50%);
-  transition: width 0.2s, height 0.2s;
+  transform: translate3d(-60px, -60px, 0);
+  transition: width 0.2s, height 0.2s, margin 0.2s;
+  will-change: transform;
 }
 
 .cursor.hot {
   width: 52px;
   height: 52px;
+  margin: -26px 0 0 -26px;
   background: var(--gold);
 }
 
@@ -115,7 +117,7 @@ input {
 
 .boot strong {
   font-family: var(--serif);
-  font-size: clamp(28px, 5vw, 48px);
+  font-size: clamp(26px, calc(5vw - 2px), 46px);
 }
 
 .boot span {
@@ -215,8 +217,7 @@ input {
   align-items: center;
   gap: 24px;
   padding: 14px 4vw;
-  background: rgba(7, 9, 12, 0.72);
-  backdrop-filter: blur(16px);
+  background: rgba(7, 9, 12, 0.92);
   border-bottom: 1px solid var(--line);
 }
 
@@ -425,7 +426,7 @@ section {
 }
 
 .name h1 {
-  font-size: clamp(64px, 10.5vw, 168px);
+  font-size: clamp(62px, calc(10.5vw - 2px), 166px);
   line-height: 0.95;
   margin: 0;
   white-space: nowrap;
@@ -510,7 +511,7 @@ section {
 }
 
 .hero .lede {
-  font-size: clamp(18px, 1.6vw, 22px);
+  font-size: clamp(18px, calc(1.6vw - 2px), 20px);
   line-height: 1.5;
   color: var(--ink);
   min-height: 1.5em;
@@ -546,7 +547,7 @@ section {
 
 h1 {
   font-family: var(--serif);
-  font-size: clamp(52px, 7.2vw, 108px);
+  font-size: clamp(50px, calc(7.2vw - 2px), 106px);
   font-weight: 400;
   line-height: 0.88;
   letter-spacing: -0.03em;
@@ -573,7 +574,7 @@ h1 em {
 
 h2 {
   font-family: var(--serif);
-  font-size: clamp(34px, 4.6vw, 64px);
+  font-size: clamp(32px, calc(4.6vw - 2px), 62px);
   font-weight: 400;
   line-height: 1.05;
   max-width: 16ch;
@@ -755,7 +756,7 @@ h2 em {
   left: 50%;
   transform: translateX(-50%);
   color: var(--gold);
-  font-size: 22px;
+  font-size: 20px;
   animation: bob 1.6s ease-in-out infinite;
 }
 
@@ -813,7 +814,7 @@ h2 em {
   color: var(--muted);
   padding: 14px 12px;
   font-family: var(--serif);
-  font-size: 22px;
+  font-size: 20px;
   transition: 0.2s ease;
 }
 
@@ -845,13 +846,13 @@ h2 em {
   font-family: var(--mono);
   color: var(--gold);
   letter-spacing: 0.2em;
-  font-size: 40px;
+  font-size: 38px;
   opacity: 0.35;
 }
 
 .svc-hero h3 {
   font-family: var(--serif);
-  font-size: 40px;
+  font-size: 38px;
   font-weight: 400;
   margin: 8px 0 14px;
 }
@@ -889,7 +890,7 @@ h2 em {
 
 .film-num {
   font-family: var(--serif);
-  font-size: 72px;
+  font-size: 70px;
   line-height: 0.8;
   color: transparent;
   -webkit-text-stroke: 1px rgba(243, 239, 230, 0.28);
@@ -906,7 +907,7 @@ h2 em {
 
 .film-card h3 {
   font-family: var(--serif);
-  font-size: 32px;
+  font-size: 30px;
   font-weight: 400;
   margin: 8px 0 6px;
 }
@@ -951,7 +952,7 @@ h2 em {
 .stat b {
   display: block;
   font-family: var(--serif);
-  font-size: 42px;
+  font-size: 40px;
   color: var(--gold);
 }
 
@@ -980,7 +981,7 @@ h2 em {
 
 .card h3 {
   font-family: var(--serif);
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 8px;
 }
 
@@ -1059,7 +1060,7 @@ h2 em {
 
 .work-card h3 {
   font-family: var(--serif);
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 400;
   margin: 8px 0 6px;
 }
@@ -1079,7 +1080,7 @@ h2 em {
 
 .dossier h3 {
   font-family: var(--serif);
-  font-size: 36px;
+  font-size: 34px;
   font-weight: 400;
 }
 
@@ -1206,7 +1207,7 @@ h2 em {
 
 .noise-readout b {
   font-family: var(--serif);
-  font-size: 28px;
+  font-size: 26px;
 }
 
 .noise-readout span {
@@ -1250,7 +1251,7 @@ h2 em {
 
 .path h3 {
   font-family: var(--serif);
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 400;
 }
 
@@ -1454,7 +1455,7 @@ h2 em {
     display: none;
   }
   h1 {
-    font-size: 52px;
+    font-size: 50px;
   }
   .orbit-scene {
     min-height: 380px;
@@ -1488,7 +1489,7 @@ h2 em {
 }
 
 .name h1 {
-  font-size: clamp(56px, min(10.5vw, 21vh), 176px);
+  font-size: clamp(37px, calc(min(7.14vw, 14.28vh) - 1.4px), 118px);
   line-height: 0.95;
   letter-spacing: -0.035em;
   white-space: nowrap;
@@ -1610,8 +1611,8 @@ h2 em {
   transform-origin: 50% 0;
   animation:
     beam-in 1.6s ease-out both,
-    beam-sway 11s ease-in-out 1.6s infinite alternate,
-    beam-breathe 7s ease-in-out infinite alternate;
+    beam-sway 11s ease-in-out 1.6s infinite alternate;
+  will-change: transform;
 }
 
 .light-beam.b1 {
@@ -1623,11 +1624,9 @@ h2 em {
   left: 34%;
   width: min(1000px, 70vw);
   opacity: 0.55;
-  mix-blend-mode: screen;
   animation:
     beam-in 2.2s ease-out both,
-    beam-sway-b 14s ease-in-out 1.6s infinite alternate,
-    beam-breathe 9s ease-in-out -3s infinite alternate;
+    beam-sway-b 14s ease-in-out 1.6s infinite alternate;
 }
 
 @keyframes beam-sway {
@@ -1940,9 +1939,10 @@ h2 em {
 }
 
 .lbl b {
-  font-family: "Anton", Impact, "Arial Narrow", sans-serif;
-  font-weight: 400;
-  font-size: clamp(24px, 2.5vw, 36px);
+  font-family: var(--sans);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: clamp(22px, calc(2.5vw - 2px), 34px);
   line-height: 1;
   text-transform: uppercase;
   color: var(--ink);
@@ -2141,7 +2141,7 @@ h2 em {
 .svc-card h3 {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(22px, 1.9vw, 27px);
+  font-size: clamp(20px, calc(1.9vw - 2px), 25px);
   line-height: 1.1;
   margin-bottom: 14px;
 }
@@ -2210,18 +2210,14 @@ h2 em {
 .rv {
   opacity: 0;
   transform: translateY(56px) scale(0.955);
-  filter: blur(8px);
   transition:
     opacity 1s var(--ease-soft) calc(var(--d, 0) * 110ms),
-    transform 1.4s var(--ease-out) calc(var(--d, 0) * 110ms),
-    filter 1.1s var(--ease-soft) calc(var(--d, 0) * 110ms);
-  will-change: opacity, transform, filter;
+    transform 1.4s var(--ease-out) calc(var(--d, 0) * 110ms);
 }
 
 .rv.in {
   opacity: 1;
   transform: none;
-  filter: none;
 }
 
 .svc-grid2 > .rv {
@@ -2360,7 +2356,7 @@ h2 em {
   border-radius: 50%;
   background: radial-gradient(circle at 35% 25%, #1b2530, #0a0e13);
   font-family: var(--serif);
-  font-size: 58px;
+  font-size: 56px;
   letter-spacing: -0.03em;
   color: var(--ink);
 }
@@ -2374,7 +2370,7 @@ h2 em {
 .profile-card h3 {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: 30px;
+  font-size: 28px;
   line-height: 1.1;
 }
 
@@ -2408,7 +2404,7 @@ h2 em {
   display: block;
   font-family: var(--serif);
   font-weight: 400;
-  font-size: 34px;
+  font-size: 32px;
   line-height: 1;
   color: var(--gold);
 }
@@ -2429,7 +2425,7 @@ h2 em {
 .about-copy .tagline {
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(20px, 2vw, 26px);
+  font-size: clamp(18px, calc(2vw - 2px), 24px);
   color: var(--gold);
   margin-bottom: 26px;
 }
@@ -2462,7 +2458,7 @@ h2 em {
 .how-grid h4 {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: 22px;
+  font-size: 20px;
   margin-bottom: 6px;
 }
 
@@ -2557,7 +2553,7 @@ h2 em {
 .a3-title {
   max-width: none;
   margin: 0;
-  font-size: clamp(46px, 8.2vw, 128px);
+  font-size: clamp(44px, calc(8.2vw - 2px), 126px);
   line-height: 0.95;
   letter-spacing: -0.035em;
 }
@@ -2594,7 +2590,7 @@ h2 em {
   display: block;
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(54px, 5.4vw, 78px);
+  font-size: clamp(52px, calc(5.4vw - 2px), 76px);
   line-height: 0.95;
   letter-spacing: -0.03em;
   color: var(--gold);
@@ -2628,7 +2624,7 @@ h2 em {
 
 .a3-text .lead {
   max-width: 52ch;
-  font-size: clamp(19px, 1.9vw, 25px);
+  font-size: clamp(19px, calc(1.9vw - 2px), 23px);
   line-height: 1.6;
   color: var(--ink);
 }
@@ -2712,7 +2708,7 @@ h2 em {
 .how-rows h4 {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(22px, 2.2vw, 30px);
+  font-size: clamp(20px, calc(2.2vw - 2px), 28px);
   line-height: 1.1;
   transition: color 0.4s var(--ease-soft);
 }
@@ -2761,12 +2757,12 @@ h2 em {
 }
 
 .a3-title {
-  font-size: clamp(44px, 6vw, 92px);
+  font-size: clamp(42px, calc(6vw - 2px), 90px);
 }
 
 /* About: role title + skill line */
 .a3-title {
-  font-size: clamp(40px, 5.6vw, 84px);
+  font-size: clamp(38px, calc(5.6vw - 2px), 82px);
   max-width: 18ch;
 }
 
@@ -2818,7 +2814,7 @@ h2 em {
   gap: 6px;
   font-family: var(--sans);
   font-weight: 700;
-  font-size: clamp(40px, 4.6vw, 64px);
+  font-size: clamp(38px, calc(4.6vw - 2px), 62px);
   line-height: 1;
   letter-spacing: -0.02em;
   color: var(--ink);
@@ -2950,7 +2946,7 @@ h2 em {
 .t-intro .a3-title {
   margin: 0;
   max-width: 14ch;
-  font-size: clamp(44px, 5.6vw, 88px);
+  font-size: clamp(42px, calc(5.6vw - 2px), 86px);
   line-height: 0.96;
 }
 
@@ -2960,7 +2956,7 @@ h2 em {
 
 .t-intro .lead {
   max-width: 54ch;
-  font-size: clamp(17px, 1.5vw, 21px);
+  font-size: clamp(17px, calc(1.5vw - 2px), 19px);
   line-height: 1.65;
   color: #e4dfd2;
 }
@@ -2986,7 +2982,7 @@ h2 em {
   font-weight: 700;
   line-height: 0.85;
   letter-spacing: -0.05em;
-  font-size: clamp(110px, 13vw, 210px);
+  font-size: clamp(108px, calc(13vw - 2px), 208px);
 }
 
 .t-years .big b {
@@ -3068,7 +3064,7 @@ h2 em {
   gap: 6px;
   font-family: var(--sans);
   font-weight: 700;
-  font-size: clamp(48px, 5vw, 76px);
+  font-size: clamp(46px, calc(5vw - 2px), 74px);
   line-height: 0.95;
   letter-spacing: -0.03em;
 }
@@ -3112,7 +3108,7 @@ h2 em {
   margin-top: auto;
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(22px, 1.9vw, 28px);
+  font-size: clamp(20px, calc(1.9vw - 2px), 26px);
   line-height: 1.1;
 }
 
@@ -3134,7 +3130,7 @@ h2 em {
 
 .t-cta > p {
   font-family: var(--serif);
-  font-size: clamp(22px, 2.4vw, 34px);
+  font-size: clamp(20px, calc(2.4vw - 2px), 32px);
   line-height: 1.15;
   max-width: 30ch;
 }
@@ -3209,7 +3205,7 @@ h2 em {
 .t-edu h3 {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(30px, 3vw, 44px);
+  font-size: clamp(28px, calc(3vw - 2px), 42px);
   line-height: 1.05;
   max-width: 14ch;
 }
@@ -3250,7 +3246,7 @@ h2 em {
   margin-top: auto;
   padding-top: 24px;
   font-family: var(--serif);
-  font-size: clamp(80px, 11vw, 168px);
+  font-size: clamp(78px, calc(11vw - 2px), 166px);
   line-height: 0.8;
   letter-spacing: -0.04em;
   color: transparent;
@@ -3283,7 +3279,7 @@ h2 em {
 .cert-list h4 {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(19px, 1.6vw, 23px);
+  font-size: clamp(19px, calc(1.6vw - 2px), 21px);
   line-height: 1.15;
 }
 
@@ -3408,7 +3404,7 @@ h2 em {
 
 .about-fit .t-intro .a3-title {
   max-width: 16ch;
-  font-size: clamp(32px, min(4.2vw, 7vh), 72px);
+  font-size: clamp(30px, calc(min(4.2vw, 7vh) - 2px), 70px);
 }
 
 .about-fit .t-intro .a3-sub {
@@ -3451,7 +3447,7 @@ h2 em {
   gap: 4px;
   font-family: var(--sans);
   font-weight: 700;
-  font-size: clamp(38px, min(4.2vw, 8vh), 74px);
+  font-size: clamp(36px, calc(min(4.2vw, 8vh) - 2px), 72px);
   line-height: 0.9;
   letter-spacing: -0.04em;
 }
@@ -3585,7 +3581,7 @@ h2 em {
 .how-list h4 {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(20px, 1.8vw, 26px);
+  font-size: clamp(18px, calc(1.8vw - 2px), 24px);
   line-height: 1.1;
 }
 
@@ -3605,7 +3601,7 @@ h2 em {
 .edu-body h3 {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(26px, 2.4vw, 36px);
+  font-size: clamp(24px, calc(2.4vw - 2px), 34px);
   line-height: 1.05;
 }
 
@@ -3631,7 +3627,7 @@ h2 em {
   margin-top: auto;
   padding-top: 18px;
   font-family: var(--serif);
-  font-size: clamp(72px, 9vw, 138px);
+  font-size: clamp(70px, calc(9vw - 2px), 136px);
   line-height: 0.8;
   letter-spacing: -0.04em;
   color: transparent;
@@ -3698,7 +3694,7 @@ h2 em {
 }
 
 .edu-body .ghost {
-  font-size: clamp(56px, min(8vw, 15vh), 138px);
+  font-size: clamp(54px, calc(min(8vw, 15vh) - 2px), 136px);
   padding-top: 10px;
   overflow: hidden;
 }
@@ -4115,7 +4111,7 @@ h2 em {
   left: 18px;
   bottom: -14px;
   font-family: var(--serif);
-  font-size: clamp(90px, 9vw, 130px);
+  font-size: clamp(88px, calc(9vw - 2px), 128px);
   line-height: 1;
   letter-spacing: -0.04em;
   color: transparent;
@@ -4129,7 +4125,7 @@ h2 em {
 .port-pad h3 {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(24px, 2.2vw, 32px);
+  font-size: clamp(22px, calc(2.2vw - 2px), 30px);
   line-height: 1.1;
 }
 
@@ -4260,7 +4256,7 @@ h2 em {
 .port-head h2 {
   max-width: none;
   margin: 0 auto 10px;
-  font-size: clamp(44px, 5.4vw, 80px);
+  font-size: clamp(34px, calc(4.32vw - 1.6px), 62px);
   color: var(--gold);
 }
 
@@ -4335,7 +4331,7 @@ h2 em {
 }
 
 #work .port-thumb .num {
-  font-size: clamp(100px, 9vw, 140px);
+  font-size: clamp(98px, calc(9vw - 2px), 138px);
 }
 
 #work .port-pad {
@@ -4801,7 +4797,7 @@ h2 em {
 .modal-body h3 {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(28px, 3.2vw, 40px);
+  font-size: clamp(26px, calc(3.2vw - 2px), 38px);
   line-height: 1.1;
 }
 
@@ -4976,7 +4972,7 @@ h2 em {
 .jobs-head h2 {
   max-width: none;
   margin: 0;
-  font-size: clamp(44px, 6vw, 92px);
+  font-size: clamp(29px, calc(4.2vw - 1.4px), 63px);
   line-height: 0.95;
   letter-spacing: -0.035em;
 }
@@ -5042,7 +5038,7 @@ h2 em {
 
 .job-when .yr {
   font-family: var(--serif);
-  font-size: clamp(60px, 8vw, 120px);
+  font-size: clamp(58px, calc(8vw - 2px), 118px);
   line-height: 0.85;
   letter-spacing: -0.045em;
   color: var(--ink);
@@ -5051,7 +5047,7 @@ h2 em {
 .job-when .to {
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(22px, 2.6vw, 38px);
+  font-size: clamp(20px, calc(2.6vw - 2px), 36px);
   line-height: 1;
   color: var(--gold);
 }
@@ -5081,7 +5077,7 @@ h2 em {
   margin-top: 14px;
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(32px, 4vw, 58px);
+  font-size: clamp(30px, calc(4vw - 2px), 56px);
   line-height: 1.02;
   letter-spacing: -0.02em;
 }
@@ -5205,7 +5201,7 @@ h2 em {
 /* the name: outlined until its role is open, then it fills and slides in */
 .job2-name {
   font-family: var(--serif);
-  font-size: clamp(42px, 7.6vw, 118px);
+  font-size: clamp(40px, calc(7.6vw - 2px), 116px);
   line-height: 0.98;
   letter-spacing: -0.045em;
   color: transparent;
@@ -5237,7 +5233,7 @@ h2 em {
 
 .job2-meta i {
   font-family: var(--serif);
-  font-size: clamp(17px, 1.5vw, 22px);
+  font-size: clamp(17px, calc(1.5vw - 2px), 20px);
   line-height: 1.15;
   color: #d9d4c7;
 }
@@ -5346,7 +5342,7 @@ h2 em {
   display: block;
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(64px, 8vw, 128px);
+  font-size: clamp(62px, calc(8vw - 2px), 126px);
   line-height: 0.85;
   letter-spacing: -0.05em;
   color: transparent;
@@ -5497,7 +5493,7 @@ h2 em {
   top: clamp(-30px, -2vw, -8px);
   font-family: var(--sans);
   font-weight: 800;
-  font-size: clamp(130px, 17vw, 270px);
+  font-size: clamp(128px, calc(17vw - 2px), 268px);
   line-height: 1;
   letter-spacing: -0.06em;
   color: transparent;
@@ -5524,7 +5520,7 @@ h2 em {
   margin-top: 14px;
   font-family: var(--sans);
   font-weight: 700;
-  font-size: clamp(38px, 4.8vw, 72px);
+  font-size: clamp(36px, calc(4.8vw - 2px), 70px);
   line-height: 1;
   letter-spacing: -0.045em;
 }
@@ -5533,7 +5529,7 @@ h2 em {
   margin-top: 12px;
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(20px, 1.9vw, 27px);
+  font-size: clamp(18px, calc(1.9vw - 2px), 25px);
   line-height: 1.15;
   color: #e4dfd2;
 }
@@ -5570,7 +5566,7 @@ h2 em {
   display: block;
   font-family: var(--sans);
   font-weight: 800;
-  font-size: clamp(56px, 6.6vw, 104px);
+  font-size: clamp(54px, calc(6.6vw - 2px), 102px);
   line-height: 0.95;
   letter-spacing: -0.055em;
   background: linear-gradient(135deg, rgb(var(--rgb)), #ffffff 130%);
@@ -5810,18 +5806,18 @@ h2 em {
 }
 
 .reel-card > .sc-bgno {
-  font-size: clamp(100px, 12vw, 190px);
+  font-size: clamp(98px, calc(12vw - 2px), 188px);
   top: -10px;
 }
 
 .reel-card .sc-name {
   margin-top: 10px;
-  font-size: clamp(30px, 3.3vw, 50px);
+  font-size: clamp(22px, calc(2.64vw - 1.6px), 38px);
 }
 
 .reel-card .sc-role {
   margin-top: 8px;
-  font-size: clamp(17px, 1.5vw, 21px);
+  font-size: clamp(17px, calc(1.5vw - 2px), 19px);
 }
 
 .reel-card .sc-chips {
@@ -5839,7 +5835,7 @@ h2 em {
 }
 
 .reel-card .sc-stat b {
-  font-size: clamp(44px, 4.8vw, 72px);
+  font-size: clamp(42px, calc(4.8vw - 2px), 70px);
 }
 
 .reel-card .sc-notes {
@@ -6008,7 +6004,7 @@ h2 em {
 .orbit-head h2 {
   max-width: none;
   margin: 0;
-  font-size: clamp(36px, 4.6vw, 68px);
+  font-size: clamp(34px, calc(4.6vw - 2px), 66px);
   line-height: 1;
   letter-spacing: -0.03em;
 }
@@ -6395,7 +6391,7 @@ h2 em {
 /* "+" turns into "x" */
 .faq b {
   align-self: flex-start;
-  font-size: 22px;
+  font-size: 20px;
   line-height: 1;
   transition: transform 0.35s ease;
 }
@@ -6416,7 +6412,7 @@ h2 em {
 #faq > h2 {
   max-width: none;
   white-space: nowrap;
-  font-size: clamp(30px, 5.2vw, 76px);
+  font-size: clamp(28px, calc(5.2vw - 2px), 74px);
 }
 
 @media (max-width: 520px) {
@@ -6459,7 +6455,7 @@ h2 em {
 .foot2-brand strong {
   display: block;
   font-family: var(--mono);
-  font-size: 22px;
+  font-size: 20px;
   letter-spacing: 0.02em;
   color: var(--gold);
 }
@@ -6467,7 +6463,7 @@ h2 em {
 .foot2-role {
   margin-top: 18px;
   font-family: var(--serif);
-  font-size: clamp(24px, 2.4vw, 34px);
+  font-size: clamp(22px, calc(2.4vw - 2px), 32px);
   line-height: 1.1;
   color: var(--ink);
 }
@@ -6617,7 +6613,7 @@ h2 em {
 .foot2-word span {
   display: block;
   font-family: var(--serif);
-  font-size: clamp(60px, 13.5vw, 230px);
+  font-size: clamp(58px, calc(13.5vw - 2px), 228px);
   line-height: 0.92;
   letter-spacing: -0.045em;
   white-space: nowrap;
@@ -6732,7 +6728,7 @@ h2 em {
 
 .foot2-role {
   margin-top: 10px;
-  font-size: clamp(21px, 2vw, 28px);
+  font-size: clamp(19px, calc(2vw - 2px), 26px);
 }
 
 .foot2-place {
@@ -6761,7 +6757,7 @@ h2 em {
 }
 
 .foot2-word span {
-  font-size: clamp(44px, 8.6vw, 142px);
+  font-size: clamp(42px, calc(8.6vw - 2px), 140px);
 }
 
 .foot2-bottom {
@@ -6788,7 +6784,7 @@ h2 em {
 }
 
 #work .port-thumb .num {
-  font-size: clamp(70px, 7vw, 100px);
+  font-size: clamp(68px, calc(7vw - 2px), 98px);
   bottom: -10px;
 }
 
@@ -6889,7 +6885,7 @@ section {
 }
 
 h2 {
-  font-size: clamp(31px, 4.1vw, 58px);
+  font-size: clamp(29px, calc(4.1vw - 2px), 56px);
 }
 
 /* hero */
@@ -6948,7 +6944,7 @@ h2 {
 }
 
 .svc-card h3 {
-  font-size: clamp(20px, 1.7vw, 24px);
+  font-size: clamp(18px, calc(1.7vw - 2px), 22px);
   margin-bottom: 10px;
 }
 
@@ -7057,7 +7053,7 @@ section.contact {
 .duo #faq > h2 {
   max-width: none;
   margin: 0;
-  font-size: clamp(26px, 3.4vw, 50px);
+  font-size: clamp(24px, calc(3.4vw - 2px), 48px);
   line-height: 1.05;
   letter-spacing: -0.03em;
   white-space: nowrap;
@@ -7089,7 +7085,7 @@ section.contact {
   }
   .duo .orbit-head h2,
   .duo #faq > h2 {
-    font-size: clamp(30px, 6vw, 46px);
+    font-size: clamp(28px, calc(6vw - 2px), 44px);
   }
 }
 
@@ -7162,7 +7158,7 @@ section#craft {
 }
 
 #craft .svc-card h3 {
-  font-size: clamp(17px, 1.45vw, 20px);
+  font-size: clamp(17px, calc(1.45vw - 2px), 18px);
   line-height: 1.12;
   margin-bottom: 6px;
 }
@@ -7193,7 +7189,7 @@ section#craft {
 }
 
 .about-fit .t-intro .a3-title {
-  font-size: clamp(26px, min(3.3vw, 5.4vh), 50px);
+  font-size: clamp(24px, calc(min(3.3vw, 5.4vh) - 2px), 48px);
 }
 
 .about-fit .t-intro .a3-sub {
@@ -7223,7 +7219,7 @@ section#craft {
 }
 
 .t-fig2 .num {
-  font-size: clamp(32px, min(3.4vw, 6vh), 56px);
+  font-size: clamp(30px, calc(min(3.4vw, 6vh) - 2px), 54px);
 }
 
 .t-fig2 p {
@@ -7248,7 +7244,7 @@ section#craft {
 }
 
 .how-list h4 {
-  font-size: clamp(17px, 1.5vw, 21px);
+  font-size: clamp(17px, calc(1.5vw - 2px), 19px);
 }
 
 .how-list p {
@@ -7258,7 +7254,7 @@ section#craft {
 }
 
 .edu-body h3 {
-  font-size: clamp(22px, 2vw, 30px);
+  font-size: clamp(20px, calc(2vw - 2px), 28px);
 }
 
 .edu-body .degree {
@@ -7271,7 +7267,7 @@ section#craft {
 }
 
 .edu-body .ghost {
-  font-size: clamp(44px, min(6vw, 9vh), 92px);
+  font-size: clamp(42px, calc(min(6vw, 9vh) - 2px), 90px);
   padding-top: 6px;
 }
 
@@ -7359,7 +7355,7 @@ section#craft {
 
 .foot2-role {
   margin-top: 6px;
-  font-size: clamp(19px, 1.7vw, 24px);
+  font-size: clamp(19px, calc(1.7vw - 2px), 22px);
 }
 
 .foot2-place {
@@ -7390,7 +7386,7 @@ section#craft {
 }
 
 .foot2-word span {
-  font-size: clamp(40px, 5.8vw, 90px);
+  font-size: clamp(38px, calc(5.8vw - 2px), 88px);
 }
 
 .foot2-bottom {
@@ -7413,6 +7409,7 @@ section#craft {
 /* contact heading: two lines */
 .contact h2 {
   max-width: none;
+  font-size: clamp(23px, calc(3.28vw - 1.6px), 45px);
   line-height: 1.08;
 }
 
@@ -7498,7 +7495,7 @@ section#craft {
 .lightbox figcaption b {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(20px, 2vw, 26px);
+  font-size: clamp(18px, calc(2vw - 2px), 24px);
 }
 
 .lightbox figcaption span {
@@ -7525,4 +7522,82 @@ section#craft {
     animation: none;
     transition: none;
   }
+}
+
+/* FAQ is a standalone section again: heading matches the other section headings */
+section#faq > h2 {
+  max-width: none;
+  white-space: nowrap;
+  font-size: clamp(20px, calc(2.87vw - 1.4px), 39px);
+}
+
+@media (max-width: 520px) {
+  section#faq > h2 {
+    white-space: normal;
+  }
+}
+
+/* ---------- Performance ---------- */
+@media (pointer: coarse), (hover: none) {
+  .cursor {
+    display: none;
+  }
+}
+
+/* skip rendering work for sections that are far off-screen */
+#craft,
+#about,
+#work,
+#experience,
+#faq,
+#contact {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
+/* ---------- Low-power mode (html.lite, set automatically by src/lite.js) ---------- */
+.lite .grain,
+.lite .cursor,
+.lite .light-flow,
+.lite .stars-area,
+.lite .giant {
+  display: none;
+}
+.lite .light-beam,
+.lite .light-beam.b2 {
+  animation: none;
+  opacity: 0.6;
+  will-change: auto;
+}
+.lite *,
+.lite *::before,
+.lite *::after {
+  animation-duration: 0.001s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.2s !important;
+  transition-delay: 0s !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  mix-blend-mode: normal !important;
+}
+.lite .rv,
+.lite .reveal {
+  transform: none;
+}
+
+/* hero intro: four lines on desktop */
+.hero .intro {
+  max-width: min(92ch, 92vw);
+  line-height: 1.65;
+}
+
+/* ---------- Section titles: fixed 38px ---------- */
+section#craft h2,
+section#about h2.a3-title,
+section#work h2,
+section#experience h2,
+section#faq > h2,
+section#contact h2 {
+  font-size: 38px;
 }

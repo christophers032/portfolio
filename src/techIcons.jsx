@@ -174,7 +174,7 @@ export default function TechIcon({ name }) {
             textAnchor="middle"
             fontSize="9.5"
             fontWeight="700"
-            fontFamily="IBM Plex Mono, monospace"
+            fontFamily="ui-monospace, Consolas, monospace"
             fill="currentColor"
           >
             SQL
@@ -194,7 +194,7 @@ export default function TechIcon({ name }) {
             textAnchor="middle"
             fontSize="12.5"
             fontWeight="700"
-            fontFamily="IBM Plex Mono, monospace"
+            fontFamily="ui-monospace, Consolas, monospace"
             fill="currentColor"
           >
             C#

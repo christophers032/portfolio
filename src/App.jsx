@@ -1,6 +1,5 @@
 ﻿import { createPortal } from "react-dom";
 import TechIcon from "./techIcons.jsx";
-import SkillsOrbit from "./SkillsOrbit.jsx";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   certifications,
@@ -9,12 +8,10 @@ import {
   faqs,
   filters,
   nav,
-  orbitSkills,
   figures,
   principles,
   profile,
   services,
-  skills,
   stats,
   ticker,
   timeline,
@@ -116,54 +113,6 @@ function untilt(e) {
   e.currentTarget.style.setProperty("--ry", "0deg");
 }
 
-function Terrain({ pointer }) {
-  const ref = useRef(null);
-  useEffect(() => {
-    const c = ref.current;
-    const ctx = c.getContext("2d");
-    let raf;
-    let t = 0;
-    const draw = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const w = window.innerWidth;
-      const h = window.innerHeight;
-      if (c.width !== Math.floor(w * dpr) || c.height !== Math.floor(h * dpr)) {
-        c.width = Math.floor(w * dpr);
-        c.height = Math.floor(h * dpr);
-        c.style.width = `${w}px`;
-        c.style.height = `${h}px`;
-      }
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.clearRect(0, 0, w, h);
-      t += 0.0035;
-      const mx = pointer.current.x || w * 0.65;
-      const my = pointer.current.y || h * 0.38;
-      const hues = ["#7dffb3", "#ffb35c", "#6ec8ff"];
-      for (let y = 0; y < h; y += 22) {
-        ctx.beginPath();
-        for (let x = 0; x <= w; x += 10) {
-          const n =
-            Math.sin(x * 0.007 + t) * 10 +
-            Math.sin(y * 0.011 - t * 1.3) * 8 +
-            Math.sin((x + y) * 0.0035 + t * 0.5) * 6;
-          const pull = Math.hypot(x - mx, y - my);
-          const bump = Math.max(0, 160 - pull) * 0.16;
-          const yy = y + n - bump;
-          if (x === 0) ctx.moveTo(x, yy);
-          else ctx.lineTo(x, yy);
-        }
-        ctx.strokeStyle = `${hues[Math.floor((y / 22) % hues.length)]}18`;
-        ctx.lineWidth = 1;
-        ctx.stroke();
-      }
-      raf = requestAnimationFrame(draw);
-    };
-    draw();
-    return () => cancelAnimationFrame(raf);
-  }, [pointer]);
-  return <canvas ref={ref} className="terrain" aria-hidden="true" />;
-}
-
 function starField(count, color) {
   return Array.from({ length: count }, () => {
     const x = Math.floor(Math.random() * 2000);
@@ -175,9 +124,9 @@ function starField(count, color) {
 function LightFx() {
   const layers = useMemo(
     () => [
-      { cls: "s1", shadow: starField(350, "#fff") },
-      { cls: "s2", shadow: starField(100, "#fff") },
-      { cls: "s3", shadow: starField(40, "#139bfd") },
+      { cls: "s1", shadow: starField(200, "#fff") },
+      { cls: "s2", shadow: starField(60, "#fff") },
+      { cls: "s3", shadow: starField(24, "#139bfd") },
     ],
     []
   );
@@ -186,7 +135,6 @@ function LightFx() {
       <img className="light-beam b2" src="/light.svg" alt="" />
       <img className="light-beam b1" src="/light.svg" alt="" />
       <div className="light-flow f1" />
-      <div className="light-flow f2" />
       <div className="stars-area">
         {layers.map((l) => (
           <div key={l.cls} className={`star ${l.cls}`} style={{ boxShadow: l.shadow }} />
@@ -648,57 +596,8 @@ function Count({ n, suffix }) {
   );
 }
 
-function OrbitScene({ focus, setFocus }) {
-  return (
-    <div className="orbit-scene" onPointerMove={tilt} onPointerLeave={untilt}>
-      <div className="holo">
-        <div className="holo-ring" />
-        <div className="holo-ring two" />
-        <div className="holo-core" />
-        <svg className="console" viewBox="0 0 420 340" aria-hidden="true">
-          <defs>
-            <linearGradient id="panel" x1="0" x2="1" y1="0" y2="1">
-              <stop offset="0%" stopColor="#12181f" />
-              <stop offset="100%" stopColor="#0b1016" />
-            </linearGradient>
-            <pattern id="grid" width="18" height="18" patternUnits="userSpaceOnUse">
-              <path d="M18 0 H0 V18" fill="none" stroke="#7dffb3" strokeOpacity="0.18" />
-            </pattern>
-          </defs>
-          <ellipse cx="210" cy="300" rx="150" ry="18" fill="#ffb35c" opacity="0.08" />
-          <rect x="36" y="28" width="348" height="248" rx="18" fill="url(#panel)" stroke="#ffb35c" strokeOpacity="0.45" />
-          <rect x="58" y="52" width="304" height="168" rx="8" fill="#071016" stroke="#7dffb3" strokeOpacity="0.25" />
-          <rect x="58" y="52" width="304" height="168" fill="url(#grid)" />
-          <path d="M80 170 C 140 120, 190 190, 250 140 S 340 110, 350 150" fill="none" stroke="#ffb35c" strokeWidth="2" />
-          <path d="M90 150 C 130 160, 160 200, 200 188 C 230 178, 240 210, 180 220 Z" fill="#7dffb3" fillOpacity="0.18" stroke="#7dffb3" />
-          <circle cx="248" cy="128" r="7" fill="#ffb35c" />
-          <rect x="70" y="234" width="70" height="8" rx="4" fill="#7dffb3" opacity="0.7" />
-          <rect x="148" y="234" width="46" height="8" rx="4" fill="#6ec8ff" opacity="0.7" />
-          <rect x="202" y="234" width="90" height="8" rx="4" fill="#c9a0ff" opacity="0.55" />
-          <text x="70" y="268" fill="#9aa093" fontSize="11" fontFamily="IBM Plex Mono">
-            SITE · LOCKED
-          </text>
-        </svg>
-      </div>
-      {orbitSkills.map((s) => (
-        <button
-          key={s.label}
-          className={`bubble ${s.tone} ${focus?.label === s.label ? "on" : ""}`}
-          style={{ left: `${s.x}%`, top: `${s.y}%`, animationDelay: s.delay }}
-          onClick={() => setFocus(s)}
-        >
-          {s.label}
-        </button>
-      ))}
-      <p className="orb-caption">{focus ? focus.blurb : "Tap a moon. The stack answers."}</p>
-    </div>
-  );
-}
-
 export default function App() {
-  const pointer = useRef({ x: 0, y: 0 });
-  const [pos, setPos] = useState({ x: -40, y: -40 });
-  const [hot, setHot] = useState(false);
+  const progRef = useRef(null);
   const [filter, setFilter] = useState("All");
   const [openWork, setOpenWork] = useState(null);
   const [curJob, setCurJob] = useState(0);
@@ -718,8 +617,6 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [menu, setMenu] = useState(false);
   const [boot, setBoot] = useState(true);
-  const [prog, setProg] = useState(0);
-  const [focus, setFocus] = useState(orbitSkills[0]);
   const section = useSection();
   const shown = works.filter(
     (w) =>
@@ -755,21 +652,29 @@ export default function App() {
     return () => clearTimeout(t);
   }, []);
 
+  // Scroll progress bar is moved straight in the DOM (no React state), once per frame.
   useEffect(() => {
-    const move = (e) => {
-      pointer.current = { x: e.clientX, y: e.clientY };
-      setPos({ x: e.clientX, y: e.clientY });
-      setHot(Boolean(e.target.closest("a,button,input,.card,.svc,.work-card,.film-card")));
-    };
-    const onScroll = () => {
+    let raf = 0;
+    let lastProg = -1;
+    const paint = () => {
+      raf = 0;
+      const bar = progRef.current;
+      if (!bar) return;
       const h = document.documentElement.scrollHeight - window.innerHeight;
-      setProg(h ? window.scrollY / h : 0);
+      const p = h > 0 ? window.scrollY / h : 0;
+      if (Math.abs(p - lastProg) > 0.0005) {
+        lastProg = p;
+        bar.style.transform = `scaleX(${p.toFixed(4)})`;
+      }
     };
-    window.addEventListener("pointermove", move);
-    window.addEventListener("scroll", onScroll, { passive: true });
+    const schedule = () => {
+      if (!raf) raf = requestAnimationFrame(paint);
+    };
+    window.addEventListener("scroll", schedule, { passive: true });
+    schedule();
     return () => {
-      window.removeEventListener("pointermove", move);
-      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("scroll", schedule);
+      if (raf) cancelAnimationFrame(raf);
     };
   }, []);
 
@@ -810,13 +715,7 @@ export default function App() {
         </div>
       )}
       <div className="grain" />
-      <div className="progress" style={{ transform: `scaleX(${prog})` }} />
-      <Terrain pointer={pointer} />
-      <div className={`cursor ${hot ? "hot" : ""}`} style={{ left: pos.x, top: pos.y }}>
-        <small>
-          {Math.round(pos.x)} · {Math.round(pos.y)}
-        </small>
-      </div>
+      <div className="progress" ref={progRef} />
       <div className="giant" aria-hidden="true">
         SEAY
       </div>
@@ -1111,7 +1010,7 @@ export default function App() {
                         }
                       : {})}
                   >
-                    {w.image && <img src={w.image} alt={`${w.title} overview`} loading="lazy" />}
+                    {w.image && <img src={w.image} alt={`${w.title} overview`} loading="lazy" decoding="async" />}
                     {w.image && (
                       <span className="zoom-hint" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
@@ -1258,12 +1157,6 @@ export default function App() {
                             <span key={c}>{c}</span>
                           ))}
                         </div>
-                        {row.stat && (
-                          <div className="sc-stat">
-                            <b>{row.stat}</b>
-                            <small>{row.statLabel}</small>
-                          </div>
-                        )}
                       </div>
                       <ol className="sc-notes">
                         {(row.points || [row.detail]).map((pt, k) => (
@@ -1281,11 +1174,7 @@ export default function App() {
           </div>          
         </section>
 
-        <section className="duo reveal">
-          <div className="duo-orbit">
-            <SkillsOrbit skills={skills} />
-          </div>
-          <div id="faq" className="duo-faq">
+        <section id="faq" className="reveal">
           <h2>Questions I actually get.</h2>
           <div className="faq">
             {faqs.map((item, i) => (
@@ -1305,7 +1194,6 @@ export default function App() {
               </button>
             ))}
           </div>
-        </div>
         </section>
 
         <section id="contact" className="contact reveal">
@@ -1363,6 +1251,7 @@ export default function App() {
     </>
   );
 }
+
 
 
 
