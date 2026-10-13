@@ -1067,9 +1067,14 @@ export default function App() {
                   <div className="port-hr" />
                   <div className="port-pad">
                     <div className="port-stack">
-                      {w.tags.map((tg) => (
+                      {w.tags.slice(0, 6).map((tg) => (
                         <TechIcon key={tg} name={tg} />
                       ))}
+                      {w.tags.length > 6 && (
+                        <span className="tech more" title={w.tags.slice(6).join(", ")}>
+                          +{w.tags.length - 6}
+                        </span>
+                      )}
                     </div>
                   </div>
 
@@ -1195,10 +1200,14 @@ export default function App() {
                 );
               })}
             </div>
-          </div>          <SkillsOrbit skills={skills} />
+          </div>          
         </section>
 
-        <section id="faq" className="reveal">
+        <section className="duo reveal">
+          <div className="duo-orbit">
+            <SkillsOrbit skills={skills} />
+          </div>
+          <div id="faq" className="duo-faq">
           <h2>Questions I actually get.</h2>
           <div className="faq">
             {faqs.map((item, i) => (
@@ -1218,13 +1227,15 @@ export default function App() {
               </button>
             ))}
           </div>
+        </div>
         </section>
 
         <section id="contact" className="contact reveal">
           <p className="eyebrow">Contact</p>
           <h2>
             Let’s make an AI feature
-            <em> actually reliable</em> in production.
+            <br />
+            <em>actually reliable</em> in production.
           </h2>
           <div className="actions">
             <a className="btn fill" href={`mailto:${profile.email}`}>
@@ -1274,6 +1285,7 @@ export default function App() {
     </>
   );
 }
+
 
 
 

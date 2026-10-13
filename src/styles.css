@@ -6720,3 +6720,698 @@ h2 em {
   transform: scale(1.12);
   color: #ffd9a0;
 }
+
+/* compact footer */
+.foot2 {
+  padding: clamp(30px, 3.6vw, 46px) 8vw 14px;
+}
+
+.foot2-top {
+  gap: clamp(24px, 4vw, 64px);
+}
+
+.foot2-role {
+  margin-top: 10px;
+  font-size: clamp(21px, 2vw, 28px);
+}
+
+.foot2-place {
+  margin-top: 10px;
+}
+
+.foot2-cta {
+  margin-top: 16px;
+  padding: 9px 18px;
+  font-size: 12px;
+}
+
+.foot2 h4 {
+  margin-bottom: 10px;
+}
+
+.foot2 .foot2-nav button,
+.foot2 .foot2-col > a {
+  padding: 7px 0;
+  font-size: 14px;
+}
+
+.foot2-word {
+  height: clamp(40px, 6.2vw, 98px);
+  margin-top: clamp(12px, 1.8vw, 24px);
+}
+
+.foot2-word span {
+  font-size: clamp(44px, 8.6vw, 142px);
+}
+
+.foot2-bottom {
+  margin-top: 2px;
+  padding-top: 12px;
+}
+
+@media (max-width: 860px) {
+  .foot2-top {
+    gap: 22px;
+  }
+}
+
+/* ---------- Portfolio cards: compact (about 70% of the previous height) ---------- */
+#work .port-thumb {
+  height: clamp(110px, 12.5vw, 150px);
+}
+
+#work .port-thumb .kind {
+  left: 14px;
+  top: 12px;
+  padding: 4px 10px;
+  font-size: 9.5px;
+}
+
+#work .port-thumb .num {
+  font-size: clamp(70px, 7vw, 100px);
+  bottom: -10px;
+}
+
+#work .port-pad {
+  padding: 11px 18px;
+}
+
+#work .port-pad h3 {
+  font-size: 17px;
+}
+
+.port-chips {
+  margin-top: 8px;
+  gap: 6px;
+}
+
+.port-chips span {
+  padding: 2px 10px;
+  font-size: 10.5px;
+}
+
+#work .port-desc {
+  -webkit-line-clamp: 3;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* one row of icons only; the rest collapse into a "+N" badge */
+#work .port-card .port-stack {
+  min-height: 0;
+  flex-wrap: nowrap;
+  gap: 8px;
+}
+
+#work .port-stack .tech {
+  width: 32px;
+  height: 32px;
+  flex: none;
+  border-radius: 8px;
+}
+
+#work .port-stack .tech svg {
+  width: 17px;
+  height: 17px;
+}
+
+#work .port-stack .tech.more {
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+#work .port-pad.port-actions {
+  padding: 10px 18px 14px;
+}
+
+#work .port-ico {
+  height: 36px;
+  font-size: 11.5px;
+}
+
+#work .port-ico svg {
+  width: 17px;
+  height: 17px;
+}
+
+@media (max-width: 700px) {
+  #work .port-card .port-stack {
+    flex-wrap: wrap;
+  }
+}
+
+/* About: about 80% of the previous height (no longer a full screen) */
+.about-fit {
+  min-height: 0;
+}
+
+.fit-grid {
+  height: calc((100svh - 112px) * 0.8);
+  min-height: 520px;
+  max-height: 720px;
+}
+
+@media (max-width: 1000px) {
+  .fit-grid {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+  }
+}
+
+/* ---------- Section heights: about 90% of before (About and footer were already trimmed) ---------- */
+section {
+  padding: 98px 8vw 62px;
+}
+
+h2 {
+  font-size: clamp(31px, 4.1vw, 58px);
+}
+
+/* hero */
+.hero {
+  min-height: 90vh;
+  padding-top: 104px;
+  padding-bottom: calc(18vh + 22px);
+}
+
+.horizon .planet {
+  top: calc(100% - 18vh);
+}
+
+.horizon {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 calc(100% - 18vh + 6px),
+    rgba(0, 0, 0, 0.72) calc(100% - 12.2vh),
+    rgba(0, 0, 0, 0.34) calc(100% - 6.8vh),
+    rgba(0, 0, 0, 0.1) calc(100% - 2.7vh),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 calc(100% - 18vh + 6px),
+    rgba(0, 0, 0, 0.72) calc(100% - 12.2vh),
+    rgba(0, 0, 0, 0.34) calc(100% - 6.8vh),
+    rgba(0, 0, 0, 0.1) calc(100% - 2.7vh),
+    transparent 100%
+  );
+}
+
+/* skill strip (and the hand-off lines that land on its route line) */
+.marquee {
+  height: clamp(135px, 13.5vw, 171px);
+}
+
+.handoff {
+  --land: clamp(67px, 6.75vw, 85px);
+}
+
+/* services */
+.svc-grid2 {
+  margin-top: 32px;
+  gap: 15px;
+}
+
+.svc-card {
+  padding: 21px 20px 22px;
+}
+
+.svc-icon {
+  width: 46px;
+  height: 46px;
+  margin-bottom: 18px;
+}
+
+.svc-card h3 {
+  font-size: clamp(20px, 1.7vw, 24px);
+  margin-bottom: 10px;
+}
+
+.svc-card p {
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+
+/* portfolio */
+.port-filters {
+  margin-top: clamp(24px, 3.4vw, 46px);
+}
+
+#work .port-grid {
+  gap: 18px;
+  margin-top: 20px;
+}
+
+#work .port-thumb {
+  height: clamp(100px, 11vw, 132px);
+}
+
+#work .port-pad {
+  padding: 10px 16px;
+}
+
+#work .port-pad.port-actions {
+  padding: 9px 16px 12px;
+}
+
+/* experience: reel and skills globe */
+.reel-card {
+  padding: clamp(18px, 2.2vw, 32px);
+  gap: clamp(18px, 2.4vw, 34px);
+}
+
+.reel-card .sc-notes {
+  gap: 13px;
+}
+
+.reel-card .sc-notes p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.orbit-wrap {
+  margin-top: clamp(46px, 7.2vw, 99px);
+}
+
+.orbit-stage {
+  height: clamp(425px, 50vw, 612px);
+}
+
+/* faq */
+.faq button {
+  padding: 14px 0;
+}
+
+/* contact */
+section.contact {
+  padding: 84px 8vw 52px;
+}
+
+.contact .actions {
+  margin-top: 22px;
+}
+
+@media (max-width: 700px) {
+  .orbit-stage {
+    height: 400px;
+  }
+}
+
+/* portfolio: last small trim */
+#work .port-thumb {
+  height: clamp(96px, 9.6vw, 118px);
+}
+
+#work .port-desc {
+  line-height: 1.5;
+}
+
+/* ---------- Skills globe (left) and FAQ (right) on one row ---------- */
+.duo {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: start;
+}
+
+.duo-orbit,
+.duo-faq {
+  min-width: 0;
+}
+
+/* matching headings so both columns start on the same line */
+.duo .orbit-wrap {
+  margin-top: 0;
+}
+
+.duo .orbit-head .eyebrow {
+  display: none;
+}
+
+.duo .orbit-head h2,
+.duo #faq > h2 {
+  max-width: none;
+  margin: 0;
+  font-size: clamp(26px, 3.4vw, 50px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+
+.duo #faq > h2 {
+  margin-bottom: 18px;
+}
+
+.duo .orbit-stage {
+  height: clamp(400px, 42vw, 570px);
+  margin-top: 6px;
+}
+
+.duo .orbit-legend {
+  flex-wrap: wrap;
+  border-radius: 22px;
+}
+
+.duo .orbit-legend li {
+  padding: 8px 12px;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 1000px) {
+  .duo {
+    grid-template-columns: 1fr;
+  }
+  .duo .orbit-head h2,
+  .duo #faq > h2 {
+    font-size: clamp(30px, 6vw, 46px);
+  }
+}
+
+@media (max-width: 520px) {
+  .duo .orbit-head h2,
+  .duo #faq > h2 {
+    white-space: normal;
+  }
+}
+
+/* the globe stays in view while the FAQ on the right is read */
+.duo-orbit {
+  position: sticky;
+  top: 90px;
+  align-self: start;
+}
+
+@media (max-width: 1000px) {
+  .duo-orbit {
+    position: static;
+  }
+}
+
+/* ---------- Services and About: about 75% of their previous height ---------- */
+
+/* services */
+section#craft {
+  padding: 66px 8vw 40px;
+}
+
+#craft > .eyebrow {
+  margin-bottom: 10px;
+}
+
+#craft > h2 {
+  margin-bottom: 6px;
+}
+
+#craft > .body {
+  max-width: none;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+#craft .svc-grid2 {
+  margin-top: 20px;
+  gap: 12px;
+}
+
+#craft .svc-card {
+  padding: 15px 16px 17px;
+  border-radius: 12px;
+}
+
+#craft .svc-no {
+  top: 14px;
+  right: 14px;
+}
+
+#craft .svc-icon {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 11px;
+  border-radius: 10px;
+}
+
+#craft .svc-icon svg {
+  width: 19px;
+  height: 19px;
+}
+
+#craft .svc-card h3 {
+  font-size: clamp(17px, 1.45vw, 20px);
+  line-height: 1.12;
+  margin-bottom: 6px;
+}
+
+#craft .svc-card p {
+  font-size: 12.5px;
+  line-height: 1.48;
+}
+
+/* about */
+.fit-grid {
+  height: calc((100svh - 112px) * 0.6);
+  min-height: 430px;
+  max-height: 560px;
+  gap: 12px;
+}
+
+.about-fit .cell > .tile {
+  padding: clamp(14px, 1.5vw, 22px);
+}
+
+.about-fit .t-intro {
+  gap: 8px;
+}
+
+.about-fit .t-intro .eyebrow {
+  margin-bottom: 4px;
+}
+
+.about-fit .t-intro .a3-title {
+  font-size: clamp(26px, min(3.3vw, 5.4vh), 50px);
+}
+
+.about-fit .t-intro .a3-sub {
+  margin-top: 8px;
+  font-size: 10px;
+}
+
+.about-fit .t-intro .lead {
+  font-size: clamp(12.5px, min(1.05vw, 1.9vh), 15px);
+  line-height: 1.5;
+}
+
+.about-fit .socials a,
+.about-fit .socials span {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+}
+
+.about-fit .about-actions .btn {
+  padding: 10px 18px;
+  font-size: 11px;
+}
+
+.f-stats {
+  gap: 12px;
+}
+
+.t-fig2 .num {
+  font-size: clamp(32px, min(3.4vw, 6vh), 56px);
+}
+
+.t-fig2 p {
+  font-size: 11.5px;
+  line-height: 1.4;
+}
+
+.t-panel {
+  gap: 10px;
+}
+
+.tabs button {
+  padding: 7px 2px;
+}
+
+.how-list li {
+  padding: 9px 0;
+}
+
+.how-list li:first-child {
+  padding-top: 0;
+}
+
+.how-list h4 {
+  font-size: clamp(17px, 1.5vw, 21px);
+}
+
+.how-list p {
+  margin-top: 3px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.edu-body h3 {
+  font-size: clamp(22px, 2vw, 30px);
+}
+
+.edu-body .degree {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.edu-body .chips {
+  margin-top: 12px;
+}
+
+.edu-body .ghost {
+  font-size: clamp(44px, min(6vw, 9vh), 92px);
+  padding-top: 6px;
+}
+
+/* certification rows: name on its own line, issuer and ID side by side beneath it */
+.t-panel .cert-list li {
+  padding: 6px 0;
+  gap: 10px;
+}
+
+.t-panel .cert-list li > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 10px;
+}
+
+.t-panel .cert-list h4 {
+  flex-basis: 100%;
+  font-size: 15px;
+}
+
+.t-panel .cert-list p {
+  margin: 1px 0 0;
+  font-size: 11px;
+}
+
+.t-panel .cert-list code {
+  margin: 1px 0 0;
+  font-size: 9.5px;
+}
+
+.t-panel .mark {
+  width: 30px;
+  height: 30px;
+}
+
+/* tuning: About to exactly ~75%, Services back up from 70% to ~75% */
+.fit-grid {
+  height: calc((100svh - 112px) * 0.565);
+  min-height: 400px;
+  max-height: 540px;
+}
+
+.t-panel .cert-list li {
+  padding: 5px 0;
+}
+
+section#craft {
+  padding: 80px 8vw 50px;
+}
+
+#craft .svc-grid2 {
+  margin-top: 28px;
+  gap: 14px;
+}
+
+#craft .svc-card {
+  padding: 17px 18px 19px;
+}
+
+@media (max-width: 1000px) {
+  .fit-grid {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+  }
+}
+
+/* ---------- Footer: about 70% of the previous height ---------- */
+.foot2 {
+  padding: 26px 8vw 10px;
+}
+
+.foot2::before {
+  top: -190px;
+}
+
+.foot2-top {
+  gap: clamp(20px, 3vw, 48px);
+}
+
+.foot2-brand strong {
+  font-size: 19px;
+}
+
+.foot2-role {
+  margin-top: 6px;
+  font-size: clamp(19px, 1.7vw, 24px);
+}
+
+.foot2-place {
+  margin-top: 7px;
+  font-size: 11px;
+}
+
+.foot2-cta {
+  margin-top: 12px;
+  padding: 7px 15px;
+  font-size: 11px;
+}
+
+.foot2 h4 {
+  margin-bottom: 6px;
+  font-size: 10.5px;
+}
+
+.foot2 .foot2-nav button,
+.foot2 .foot2-col > a {
+  padding: 4px 0;
+  font-size: 13.5px;
+}
+
+.foot2-word {
+  height: clamp(30px, 3.9vw, 56px);
+  margin-top: clamp(6px, 0.9vw, 12px);
+}
+
+.foot2-word span {
+  font-size: clamp(40px, 5.8vw, 90px);
+}
+
+.foot2-bottom {
+  margin-top: 0;
+  padding-top: 8px;
+  font-size: 11px;
+}
+
+.foot2-bottom button {
+  padding: 4px 4px 4px 13px;
+  font-size: 10.5px;
+}
+
+.foot2-bottom button svg {
+  width: 24px;
+  height: 24px;
+  padding: 5px;
+}
+
+/* contact heading: two lines */
+.contact h2 {
+  max-width: none;
+  line-height: 1.08;
+}
