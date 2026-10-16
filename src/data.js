@@ -8,7 +8,7 @@
   phoneHref: "tel:+12244320846",
   linkedin: "https://www.linkedin.com/in/christopher-seay-5ab146427/",
   github: "https://github.com/christophers032",
-  cv: "/christopher-seay.pdf",
+  cv: "/Christopher_Seay_Resume.pdf",
   intro:
     "I’m a polyglot full-stack engineer, working across React, Go, Python, Node.js, .NET, and Spring Boot, with a current focus on AI/ML integration and data engineering. I build pipelines and ML-powered features that work in production, not just in a notebook, and I own the work end to end, from schema to UI to the CI/CD that ships it. Azure and AWS are where I live day to day.",
   summary:
